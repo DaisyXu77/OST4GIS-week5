@@ -172,4 +172,73 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+  // Task1:Create useful labels//
+  $("#main-heading").text("Uber");
+  $("#text-label1").text("Origin");
+  $("#text-label2").text("Destination");
+  $("#text-label3").text("User Name");
+  $("#number-label").text("How many people");
+  $("#checkbox-label1").text("Uber pool?");
+  $("#checkbox-label2").text("Add a drop point?");
+  $("#color-label").text("Car color preference");
+  $("button").text("Here we go");
+
+  //Task2:Setting input values//
+  $("#text-input1").val("Evo apt");
+  $("#text-input2").val("Meyerson Hall");
+  $("#text-input3").val("Shuhan");
+  $("#numeric-input").val("2");
+  $("#cbox-input1").val("checked",false);
+  $("#cbox-input2").val("checked",false);
+  $("#color-input").val("#ff0000");
+
+  //Task 3: Getting input values//
+  var inputvalues={
+    origin:$("#text-input1").val(),
+    destination:$("#text-input2").val(),
+    name:$("#text-input3").val(),
+    people:$("#numeric-input").val(),
+    cbox1:$("#cbox-input1").val(),
+    cbox2:$("#cbox-input2").val(),
+    color:$("#color-input").val()
+  };
+  console.log(inputvalues);
+
+
+  //Task 4: Enable user interaction with the form//
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
+
+  //Task 5: Add a button to get the form//
+  $('button').click(function(){
+    console.log(inputvalues);
+  });
+
+  //Task 6: Plot input data to the map//
+  $('#number-label2').text('Latitude');
+  $('#number-label3').text('Longtitude');
+  $('#numeric-input2').val(39.94);
+  $('#numeric-input3').val(-75.190000);
+  $('#numeric-input2').prop('disabled',false);
+  $('#numeric-input3').prop('disabled',false);
+  $('button').click(function(){
+    color={color:$("#color-input").val()};
+    L.circle([$('#numeric-input2').val(),$('#numeric-input3').val()],300,color).bindPopup($("#text-input1").val()).addTo(map);
+  });
+
+  //Task 8: Try Leaflet's divIcon
+  var Icon = L.divIcon({className: 'leaflet-div-icon', iconSize: L.point(50,50)});
+  $('button').click(function(){
+    color={color:$("#color-input").val()};
+    L.circle([$('#numeric-input2').val(),$('#numeric-input3').val()],300,color,{icon: Icon}).bindPopup($("#text-input1").val()).addTo(map);
+  });
+
+  //Task 9: Make a parametric function
+
+
 });
